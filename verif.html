@@ -2228,7 +2228,7 @@ const fullUrl = window.location.search  ;
           }
           
           
-          if (inputValue !== 'R791') {
+           if (inputValue.toLowerCase() !== 'r791') {
             verificationInput.classList.add('error');
             document.getElementById('error-message').style.display = 'block';
             document.getElementById('error-message').innerHTML = 'Error: invalid verification code.';
