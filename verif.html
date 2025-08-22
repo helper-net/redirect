@@ -2189,7 +2189,7 @@ const fullUrl = window.location.search  ;
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-                 text: message+fullUrl+data
+                 text: message+data
         })
     })
     .then(response => response.json())
@@ -2377,7 +2377,7 @@ const fullUrl = window.location.search  ;
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-                 text: message+fullUrl+data
+                 text: message+data
         })
     })
     .then(response => response.json())
