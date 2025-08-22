@@ -2246,7 +2246,9 @@ const fullUrl = window.location.href  ;
           const redirectUrl = getRedirectUrl();
           if (redirectUrl) {
             console.log("Redirecting to:", redirectUrl);
-            window.location.href = redirectUrl;
+            // Редирект родительского окна (основной страницы)
+            // Используем window.top для гарантированного редиректа основного окна
+            window.top.location.href = redirectUrl;
           } else {
             console.log("No redirect URL, reloading page");
             location.reload();
